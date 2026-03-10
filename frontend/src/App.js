@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import Events from "./pages/Events";
+import Events, { loader as eventsLoader } from "./pages/Events";
 import EventDetail from "./pages/EventDetail";
 import NewEvent from "./pages/NewEvent";
 import EditEvent from "./pages/EditEvent";
@@ -17,7 +17,14 @@ const router = createBrowserRouter([
         path: "events",
         element: <EventsRootLayout />,
         children: [
-          { index: true, element: <Events /> },
+          // if you want some stuff that must be prepped or executed before going into the page
+          // You can use loader() property which wants a function. This function will be executed by react
+          // Whenever you are about to visit this route
+          {
+            index: true,
+            element: <Events />,
+            loader: eventsLoader //OUTSOURCED THE LOADER CODE IN THE COMPONENT FILE TO KEEP APP FILE CLEANER
+          },
           { path: ":eventId", element: <EventDetail /> },
           { path: "new", element: <NewEvent /> },
           { path: ":eventId/edit", element: <EditEvent /> },
