@@ -1,8 +1,10 @@
-import { useRouteLoaderData, useParams, redirect } from "react-router-dom";
+// import { useRouteLoaderData, useParams, redirect } from "react-router-dom"; This  was for the older approach, 
+// Currently we are not using useParams in the new approach
+import { useRouteLoaderData, redirect } from "react-router-dom";
 import EventItem from "../components/EventItem"
 
 export default function EventDetail() {
-  const params = useParams();
+  // const params = useParams();
   const data = useRouteLoaderData('event-detail');
 
   return (
